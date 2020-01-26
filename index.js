@@ -1,6 +1,9 @@
 let express = require("express");
 let app = express();
 let mongoose = require("mongoose");
+let genre = require("./routes/movie/genre");
+let movie = require("./routes/movie/movie");
+
 
 
 let port = 4800 || process.env.port;
@@ -11,4 +14,6 @@ mongoose.connect("mongodb://localhost/HHD", { useNewUrlParser: true, useUnifiedT
     .catch((error) => console.log(`something went wrong ${error.message}`));
 
 app.listen(port, () => console.log(`connected to port`));
-// app.use("/api" movie);
+
+app.use("/api", genre);
+app.use("/api", movie);
