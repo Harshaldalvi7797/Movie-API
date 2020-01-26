@@ -14,7 +14,7 @@ router.post("/genre", async (req, res) => {
     let data = new genre.genreModel({
         name: req.body.name
     });
-    let item = data.save();
+    let item = await data.save();
     res.send({ i: item })
 
 })

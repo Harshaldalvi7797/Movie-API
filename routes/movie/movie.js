@@ -26,6 +26,8 @@ router.post("/movie", async (req, res) => {
 
 
     })
+    let item = await data.save();
+    res.send(item);
 })
 
 function validationError(error) {
@@ -37,4 +39,6 @@ function validationError(error) {
     });
     return schema.validate(error);
 
-} 
+}
+
+module.exports = router;

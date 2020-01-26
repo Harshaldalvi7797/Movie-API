@@ -6,7 +6,7 @@ let movie = require("./routes/movie/movie");
 
 
 
-let port = 4800 || process.env.port;
+let port = 4600 || process.env.port;
 app.use(express.json());
 
 mongoose.connect("mongodb://localhost/HHD", { useNewUrlParser: true, useUnifiedTopology: true })
