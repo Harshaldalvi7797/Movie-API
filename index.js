@@ -3,6 +3,10 @@ let app = express();
 let mongoose = require("mongoose");
 let genre = require("./routes/movie/genre");
 let movie = require("./routes/movie/movie");
+let fawn = require("fawn");
+
+let stockmovie = require("./routes/transaction/movie");
+let stockuser = require("./routes/transaction/user");
 
 
 
@@ -17,3 +21,5 @@ app.listen(port, () => console.log(`connected to port`));
 
 app.use("/api", genre);
 app.use("/api", movie);
+app.use("/api/stocks", stockmovie);
+app.use("/api/stocks", stockuser);

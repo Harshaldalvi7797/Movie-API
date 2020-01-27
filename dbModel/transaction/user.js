@@ -1,5 +1,5 @@
 let mongoose = require("mongoose");
-let userSchema = new mongoose.Schema({
+let usermovieSchema = new mongoose.Schema({
 
     FirstName: { type: String, required: true },
     LastName: { type: String, required: true },
@@ -7,6 +7,6 @@ let userSchema = new mongoose.Schema({
 
 })
 
-let userModel = mongoose.model("user", userSchema);
+let userModel = mongoose.model("usermoviestocks", usermovieSchema);
 
-module.exports = { userSchema, userModel };
+module.exports = { usermovieSchema, userModel };

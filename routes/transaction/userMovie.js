@@ -2,7 +2,7 @@ let express = require("express");
 let router = express.Router();
 let joi = require("@hapi/joi");
 
-let userMovie = require("../../dbModel//transaction/userMovie");
+let userMovie = require("../../dbModel/transaction/userMovie");
 let user = require("../../dbModel/transaction/user");
 let movie = require("../../dbModel/transaction/movie");
 
@@ -11,9 +11,10 @@ router.post("/usermovie", async (req, res) => {
     if (error) { return res.send(error.details[0].message) }
 
     let userstocks = await user.userModel.findById(req.body.userId);
+    console.log(userstocks);
     if (!userstocks) { return res.status(403).send({ message: "invalid user id" }) }
 
-    let movietocks = await movie.movieModel.findById(req.body.userId);
+    let movietocks = await movie.movieModel.findById(req.body.movieId);
     if (!movietocks) { return res.status(403).send({ message: "invalid movie id" }) }
 
     let data = new userMovie({
@@ -34,8 +35,12 @@ router.post("/usermovie", async (req, res) => {
 
 
     })
-    let item = data.save();
+
+
+    let item = await data.save();
+    movietocks.stocks--;
     res.send(item);
+
 
 
 

@@ -9,7 +9,7 @@ router.post("/user", async (req, res) => {
     if (error) { return res.send(error.details[0].message) }
 
     let data = new user.userModel({
-        Firstname: req.body.Firstname,
+        FirstName: req.body.FirstName,
         LastName: req.body.LastName,
         EmailId: req.body.EmailId
 
@@ -21,7 +21,7 @@ router.post("/user", async (req, res) => {
 
 function userValidation(error) {
     let schema = joi.object({
-        Firstname: joi.string().required(),
+        FirstName: joi.string().required(),
         LastName: joi.string().required(),
         EmailId: joi.string().required().email()
 
