@@ -13,7 +13,7 @@ router.post("/usermovie", async (req, res) => {
     let userstocks = await user.userModel.findById(req.body.userId);
     if (!userstocks) { return res.status(403).send({ message: "invalid user id" }) }
 
-    let movietocks = await user.movieModel.findById(req.body.userId);
+    let movietocks = await movie.movieModel.findById(req.body.userId);
     if (!movietocks) { return res.status(403).send({ message: "invalid movie id" }) }
 
     let data = new userMovie({
