@@ -1,6 +1,8 @@
+// @ts-nocheck
 let express = require("express");
 let router = express.Router();
 let joi = require("@hapi/joi");
+let fawn = require("fawn");
 
 let userMovie = require("../../dbModel/transaction/userMovie");
 let user = require("../../dbModel/transaction/user");
@@ -12,17 +14,19 @@ router.post("/usermovie", async (req, res) => {
 
 
 
-
     let userstocks = await user.userModel.findById(req.body.userId);
-    console.log(userstocks);
+
     if (!userstocks) { return res.status(403).send({ message: "invalid user id" }) }
 
     let movietocks = await movie.movieModel.findById(req.body.movieId);
     if (!movietocks) { return res.status(403).send({ message: "invalid movie id" }) }
+    console.log(movietocks);
 
     let data = new userMovie({
+
         userId: {
             FirstName: userstocks.FirstName,
+            // @ts-ignore
             LastName: userstocks.LastName,
             EmailId: userstocks.EmailId
 
@@ -38,12 +42,36 @@ router.post("/usermovie", async (req, res) => {
 
 
     });
+    //     .update("moviestocks", { _id: movietocks._id },
+    //     {
+    //         $inc: {
+    //             stocks: -1
+    //         }
+    //     }
+    // )
 
 
-    let item = await data.save();
-    res.send(item);
+
+    try {
+        fawn.Task().save("udata", data).update("moviestocks", { _id: movietocks._id }, { $inc: { stocks: -1 } })
+            .run();
+        res.send(data);
+
+
+
+    }
+    catch (ex) {
+        res.send(ex.message);
+    }
+
+
+
+
+
+    // let item = await data.save();
+    // res.send(item);
     // movietocks.stocks--;
-    // movietocks.stocks--;
+
     // res.send(item);
 
 

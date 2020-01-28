@@ -4,9 +4,11 @@ let mongoose = require("mongoose");
 let genre = require("./routes/movie/genre");
 let movie = require("./routes/movie/movie");
 let fawn = require("fawn");
+fawn.init(mongoose);
 
 let stockmovie = require("./routes/transaction/movie");
 let stockuser = require("./routes/transaction/user");
+let usermoviestocks = require("./routes/transaction/userMovie");
 
 
 
@@ -21,5 +23,6 @@ app.listen(port, () => console.log(`connected to port`));
 
 app.use("/api", genre);
 app.use("/api", movie);
-// app.use("/api/stocks", stockmovie);
-// app.use("/api/stocks", stockuser);
+app.use("/api/stocks", stockmovie);
+app.use("/api/stocks", stockuser);
+app.use("/api/stocks", usermoviestocks);
