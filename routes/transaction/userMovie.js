@@ -10,6 +10,9 @@ router.post("/usermovie", async (req, res) => {
     let { error } = userMovievalidation(req.body);
     if (error) { return res.send(error.details[0].message) }
 
+
+
+
     let userstocks = await user.userModel.findById(req.body.userId);
     console.log(userstocks);
     if (!userstocks) { return res.status(403).send({ message: "invalid user id" }) }
@@ -34,10 +37,12 @@ router.post("/usermovie", async (req, res) => {
         }
 
 
-    })
+    });
 
 
-    // let item = await data.save();
+    let item = await data.save();
+    res.send(item);
+    // movietocks.stocks--;
     // movietocks.stocks--;
     // res.send(item);
 
