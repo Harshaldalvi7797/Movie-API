@@ -1,12 +1,12 @@
 let mongoose = require("mongoose");
-let usermovieSchema = new mongoose.Schema({
+let userSchema = new mongoose.Schema({
 
     FirstName: { type: String, required: true },
     LastName: { type: String, required: true },
-    Emailid: { type: String, required: true }
+    EmailId: { type: String, required: true }
 
 })
 
-let userModel = mongoose.model("usermoviestocks", usermovieSchema);
+let userModel = mongoose.model("userstocks", userSchema);
 
-module.exports = { usermovieSchema, userModel };
+module.exports = { userSchema, userModel };

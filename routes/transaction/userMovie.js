@@ -21,7 +21,7 @@ router.post("/usermovie", async (req, res) => {
         userId: {
             FirstName: userstocks.FirstName,
             LastName: userstocks.LastName,
-            EmailID: userstocks.EmailId
+            EmailId: userstocks.EmailId
 
         },
 
@@ -37,9 +37,9 @@ router.post("/usermovie", async (req, res) => {
     })
 
 
-    let item = await data.save();
-    movietocks.stocks--;
-    res.send(item);
+    // let item = await data.save();
+    // movietocks.stocks--;
+    // res.send(item);
 
 
 

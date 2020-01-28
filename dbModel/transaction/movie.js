@@ -8,6 +8,6 @@ let movieSchema = new mongoose.Schema({
 
 })
 
-let movieModel = mongoose.model("movie", movieSchema);
+let movieModel = mongoose.model("moviestocks", movieSchema);
 
 module.exports = { movieSchema, movieModel };

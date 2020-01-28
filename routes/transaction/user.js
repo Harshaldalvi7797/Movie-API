@@ -15,7 +15,7 @@ router.post("/user", async (req, res) => {
 
     })
     let item = await data.save();
-    res.send({ i: item })
+    res.send({ i: item });
 
 });
 

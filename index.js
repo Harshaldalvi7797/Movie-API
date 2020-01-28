@@ -21,5 +21,5 @@ app.listen(port, () => console.log(`connected to port`));
 
 app.use("/api", genre);
 app.use("/api", movie);
-app.use("/api/stocks", stockmovie);
-app.use("/api/stocks", stockuser);
+// app.use("/api/stocks", stockmovie);
+// app.use("/api/stocks", stockuser);
